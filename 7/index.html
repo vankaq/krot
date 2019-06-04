@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+	.hole{
+		width: 250px;
+		height: 200px;
+		background-image: url('dirt.svg');
+		background-size: 100% 100%;
+		margin-top: 200px;
+		margin-left: 10px;
+		z-index: 2;
+	}
+	.flex{
+		display: flex;
+	}
+	.mole{
+		position: absolute;
+		width: 100px;
+		z-index: 1;
+	}
+	</style>
+</head>
+<body>
+	<div class="flex">
+		<div class="hole">
+			
+		</div>
+		<div class="hole">
+			
+		</div>
+		<div class="hole">
+			
+		</div>
+		<div class="hole">
+			
+		</div>
+		<div class="hole">
+			
+		</div>
+		<div class="hole">
+			
+		</div>
+	</div>
+	<script type="text/javascript">
+		var holes = document.querySelectorAll(".hole");
+		setInterval(show,Math.round(Math.random()*1000 + 500))
+		var score = 0
+		var mole = document.createElement("img");
+		document.body.appendChild(mole);
+		mole.src = "mole.svg";
+		mole.classList.add("mole");
+
+		function show(){
+			var rand = Math.round(Math.random()*5);
+			mole.style.top = holes[rand].getBoundingClientRect().top-50 + "px";
+			mole.style.left = holes[rand].getBoundingClientRect().left + "px";
+			//console.log(holes[rand].getBoundingClientRect())
+		}
+		setTimeout(check, 5000)
+		mole.onclick = function(){
+			score++;
+			console.log(score)
+		}
+		function check(){
+			if(score>=5){
+				alert("you win")
+			}
+			else{
+				alert("you lose")
+			}
+		}
+	</script>
+</body>
+</html>
